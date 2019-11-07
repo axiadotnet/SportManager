@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SportManager.Model
 {
-    internal class Athlete
+    internal abstract class Athlete
     {
         public string Id { get; }
         public string Name { get; set; }
@@ -37,8 +37,6 @@ namespace SportManager.Model
 
         private double weight;
         public double Weight { get => weight; set => weight = (value > 0) ? value : 0; }
-
-
 
         public Athlete(string name, string surname, int age, Gender gender)
         {
@@ -79,6 +77,10 @@ namespace SportManager.Model
                 return -1;
             }
         }
+
+        public abstract string getStipendio();
+
+
 
         //public string Description()
         //{
