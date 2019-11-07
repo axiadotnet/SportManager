@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportManager.Model.Sports;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace SportManager.Model
         public string Surname { get; set; }
         public Gender Gender { get; set; }
         public DateTime SubscriptionDate { get; }
+
+        public Sport Sport { get; set; }
 
         private int age;
         public int Age
@@ -48,7 +51,7 @@ namespace SportManager.Model
             Id = CreateId(Name, Surname, SubscriptionDate);
         }
 
-        public Athlete(string id, string name, string surname, Gender gender, DateTime subscriptionDate, int age, double height, double weight)
+        public Athlete(string id, string name, string surname, Gender gender, DateTime subscriptionDate, int age, double height, double weight, Sport sport)
         {
             Id = id;
             Name = name;
@@ -58,6 +61,7 @@ namespace SportManager.Model
             Age = age;
             Height = height;
             Weight = weight;
+            Sport = sport;
         }
 
         private string CreateId(string name, string surname, DateTime date)
@@ -143,7 +147,8 @@ namespace SportManager.Model
                 + "Altezza: " + Height + "m\n"
                 + "Peso: " + Weight + "Kg\n"
                 + "BMI: " + bMIString + "\n"
-                + "Data di iscrizione: " + SubscriptionDate.ToString("dd - MM - yyyy") + "\n";
+                + "Data di iscrizione: " + SubscriptionDate.ToString("dd - MM - yyyy") + "\n"
+                + "Sport: " + Sport.Name + "\n";
             return description;
         }
     }

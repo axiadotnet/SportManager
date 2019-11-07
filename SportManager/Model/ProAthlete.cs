@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportManager.Model.Sports;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,8 +9,8 @@ namespace SportManager.Model
     {
         public string Sponsor { get; set; }
 
-        public ProAthlete(string id, string name, string surname, Gender gender, DateTime subscriptionDate, int age, double height, double weight, string sponsor)
-            : base(id, name, surname, gender, subscriptionDate, age, height, weight) 
+        public ProAthlete(string id, string name, string surname, Gender gender, DateTime subscriptionDate, int age, double height, double weight, string sponsor, Sport sport)
+            : base(id, name, surname, gender, subscriptionDate, age, height, weight, sport) 
         {
             Sponsor = sponsor;
         }
