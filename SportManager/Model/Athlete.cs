@@ -130,6 +130,16 @@ namespace SportManager.Model
         {
             string bMIString;
             double bMI = CalculateBMI(Height, Weight);
+            int calory;
+            if (bMI>0)
+            {
+                calory = Sport.CalcDailyCalory(bMI);
+            }
+            else
+            {
+                calory = 2000;
+            }
+            
 
             if (bMI > 0)
             {
@@ -148,7 +158,8 @@ namespace SportManager.Model
                 + "Peso: " + Weight + "Kg\n"
                 + "BMI: " + bMIString + "\n"
                 + "Data di iscrizione: " + SubscriptionDate.ToString("dd - MM - yyyy") + "\n"
-                + "Sport: " + Sport.Name + "\n";
+                + "Sport: " + Sport.Name + "\n"
+                + "Calorie: " + calory + "\n";
             return description;
         }
     }
