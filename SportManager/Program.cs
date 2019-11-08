@@ -8,8 +8,10 @@ namespace SportManager
     {
         static void Main(string[] args)
         {
+            PersistenceLayer persistence = new PersistenceLayer();
+            LogicLayer logic = new LogicLayer(persistence);
 
-            UserInterfaceLayer gui = new UserInterfaceLayer();
+            UserInterfaceLayer gui = new UserInterfaceLayer(logic);
             gui.start();
             //Sport calcio = new Soccer();
             //Sport tennis = new Tennis();

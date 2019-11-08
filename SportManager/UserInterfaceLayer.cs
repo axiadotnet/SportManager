@@ -16,9 +16,10 @@ namespace SportManager
 
         public ILogic myLogic { get; set; }
 
-        public UserInterfaceLayer()
+        public UserInterfaceLayer(ILogic logic)
         {
-            myLogic = new LogicLayer();
+            myLogic = logic;
+
         }
 
 

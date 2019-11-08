@@ -8,15 +8,16 @@ namespace SportManager
     class LogicLayer : ILogic
     {
 
-        public IPersistence myPersitence { get; set; }
+        public IPersistence MyPersitence { get; set; }
 
-        public LogicLayer()
+        public LogicLayer(IPersistence persistence)
         {
-            myPersitence = new PersistenceLayer();
+            //MyPersitence = new PersistenceLayer();
+            MyPersitence = persistence;
         }
         public Athlete[] getAllAthletes()
         {
-            Athlete[] athleteArray = myPersitence.AllAthlete;
+            Athlete[] athleteArray = MyPersitence.AllAthlete;
             return athleteArray;
         }
 
