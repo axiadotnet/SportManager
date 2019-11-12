@@ -8,7 +8,8 @@ namespace SportManager
     {
         static void Main(string[] args)
         {
-            PersistenceLayer persistence = new PersistenceLayer();
+            //DummyPersistenceLayer persistence = new DummyPersistenceLayer();
+            DataBasePersistenceLayer persistence = new DataBasePersistenceLayer();
             LogicLayer logic = new LogicLayer(persistence);
 
             UserInterfaceLayer gui = new UserInterfaceLayer(logic);

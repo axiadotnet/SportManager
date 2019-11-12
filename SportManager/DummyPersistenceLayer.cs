@@ -6,11 +6,11 @@ using SportManager.Model.Sports;
 
 namespace SportManager
 {
-    class PersistenceLayer : IPersistence
+    class DummyPersistenceLayer : IPersistence //implementiamo l interfaccia
     {
-        public Athlete[] AllAthlete { get; set; }
+        public Athlete[] AllAthlete { get; set; } //creazioe property da inserire in un array di tipo Athlete (atleti dentro sacco di atleti)
 
-        public PersistenceLayer()
+        public DummyPersistenceLayer() //simulazione creaz. database
         {
             Sport calcio = new Soccer();
             Sport tennis = new Tennis();
@@ -53,7 +53,7 @@ namespace SportManager
             Athlete ja2 = new JuniorAthlete("Guendalina", "Harden", 13, Gender.Female, "Anna Harden");
             ja2.Sport = tennis;
 
-            AllAthlete = new Athlete[] { a1, a2, pa1, pa2, aa1, ja1, ja2 };
+            AllAthlete = new Athlete[] { a1, a2, pa1, pa2, aa1, ja1, ja2 }; //inser. elementi creati sopra
         }
 
         public void SaveAthlete(Athlete a)

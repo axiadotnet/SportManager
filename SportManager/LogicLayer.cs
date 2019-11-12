@@ -17,13 +17,13 @@ namespace SportManager
         }
         public Athlete[] getAllAthletes()
         {
-            Athlete[] athleteArray = MyPersitence.AllAthlete;
+            Athlete[] athleteArray = MyPersitence.AllAthlete; //AllAthlete esiste in PersistenceLayer
             return athleteArray;
         }
 
         public void insertAthlete(Athlete athlete)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(athlete);
         }
 
         public Athlete searchAthlete(string name)

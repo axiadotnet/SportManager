@@ -1,4 +1,5 @@
 ﻿using SportManager.Model;
+using SportManager.Model.Sports;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,11 +15,11 @@ namespace SportManager
             "'i' per inserire un nuovo iscritto\n" +
             "'q' per uscire";
 
-        public ILogic myLogic { get; set; }
+        public ILogic MyLogic { get; set; }
 
         public UserInterfaceLayer(ILogic logic)
         {
-            myLogic = logic;
+            MyLogic = logic;
 
         }
 
@@ -49,6 +50,16 @@ namespace SportManager
 
         private void insertAthlete()
         {
+            string name = "Lorena";
+            string surname = "Schirru";
+            int age = 35;
+            Gender gender = Gender.Female;
+
+            AmateurAthlete nuovoAtleta = new AmateurAthlete(name, surname, age, gender);
+
+            nuovoAtleta.Sport = new Soccer();
+
+            MyLogic.insertAthlete(nuovoAtleta);
 
         }
 
@@ -59,7 +70,7 @@ namespace SportManager
 
         private void showAthletesList()
         {
-            Athlete[] athletesArray = myLogic.getAllAthletes();
+            Athlete[] athletesArray = MyLogic.getAllAthletes();
 
             foreach (Athlete atl in athletesArray)
             {
