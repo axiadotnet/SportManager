@@ -17,7 +17,25 @@ namespace SportManager
         }
         public Athlete[] getAllAthletes()
         {
-            Athlete[] athleteArray = MyPersitence.AllAthlete; //AllAthlete esiste in PersistenceLayer
+
+            Athlete[] athleteArray = MyPersitence.AllAthlete;
+
+            Athlete temp;
+
+            for (int i = 0; i < athleteArray.Length-1; i++)
+            {
+                for (int j = i+1; j < athleteArray.Length; j++)
+                { 
+                    if (athleteArray[i].Name.CompareTo(athleteArray[j].Name)>0)
+                    {
+                        temp = athleteArray[i];
+                        athleteArray[i] = athleteArray[j];
+                        athleteArray[j] = temp;
+                    }
+                }
+            }
+
+
             return athleteArray;
         }
 
@@ -26,9 +44,18 @@ namespace SportManager
             Console.WriteLine(athlete);
         }
 
-        public Athlete searchAthlete(string name)
+        public Athlete searchAthlete(string searchString)
         {
-            throw new NotImplementedException();
+            Athlete[] athleteArray = MyPersitence.AllAthlete;
+
+            foreach (var athlete in athleteArray)
+            {
+                if (athlete.Name.ToLower().Contains(searchString.ToLower())||athlete.Surname.ToLower().Contains(searchString.ToLower()))
+                {
+                    return athlete;
+                }
+            }
+            return null;
         }
     }
 }

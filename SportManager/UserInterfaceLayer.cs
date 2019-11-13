@@ -65,7 +65,17 @@ namespace SportManager
 
         private void searchAthlete()
         {
-
+            Console.WriteLine("Inserisci il Nome della persona da cercare");
+            string searchString = Console.ReadLine();
+            Athlete searchedAthlete = MyLogic.searchAthlete(searchString);
+            if (searchedAthlete != null)
+            {
+                Console.WriteLine(searchedAthlete);
+            }
+            else
+            {
+                Console.WriteLine("Atleta non trovato");
+            }
         }
 
         private void showAthletesList()
