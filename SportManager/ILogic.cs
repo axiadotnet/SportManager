@@ -7,7 +7,7 @@ namespace SportManager
 {
     interface ILogic
     {
-        Athlete[] getAllAthletes();
+        IEnumerable<Athlete> getAllAthletes();
         Athlete searchAthlete(string name);
         void insertAthlete(Athlete athlete);
     }

@@ -50,16 +50,28 @@ namespace SportManager
 
         private void insertAthlete()
         {
-            string name = "Lorena";
-            string surname = "Schirru";
-            int age = 35;
+            Console.WriteLine("Inserisci il nome");
+            string name = Console.ReadLine();
+            Console.WriteLine("Inserisci il cognome");
+            string surname = Console.ReadLine();
+            Console.WriteLine("Inserisci l'età");
+            int age = int.Parse(Console.ReadLine());
             Gender gender = Gender.Female;
 
             AmateurAthlete nuovoAtleta = new AmateurAthlete(name, surname, age, gender);
 
             nuovoAtleta.Sport = new Soccer();
 
-            MyLogic.insertAthlete(nuovoAtleta);
+            try
+            {
+                MyLogic.insertAthlete(nuovoAtleta);
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("L'utente non é stato salvato");
+            }
+            
 
         }
 
@@ -67,25 +79,40 @@ namespace SportManager
         {
             Console.WriteLine("Inserisci il Nome della persona da cercare");
             string searchString = Console.ReadLine();
-            Athlete searchedAthlete = MyLogic.searchAthlete(searchString);
-            if (searchedAthlete != null)
+            try
             {
+                Athlete searchedAthlete = MyLogic.searchAthlete(searchString);
                 Console.WriteLine(searchedAthlete);
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("Atleta non trovato");
+                Console.WriteLine("Atleta non trovato\n\n");
             }
+            
+
+            
+
+            //Athlete searchedAthlete = MyLogic.searchAthlete(searchString);
+            //if (searchedAthlete != null)
+            //{
+            //    Console.WriteLine(searchedAthlete);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Atleta non trovato");
+            //}
         }
 
         private void showAthletesList()
         {
-            Athlete[] athletesArray = MyLogic.getAllAthletes();
+            IEnumerable<Athlete> athletesList = MyLogic.getAllAthletes();
 
-            foreach (Athlete atl in athletesArray)
+            foreach (Athlete atl in athletesList)
             {
                 Console.WriteLine(atl);
             }
         }
+
+
     }
 }

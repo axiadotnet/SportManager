@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using SportManager.Model;
 
@@ -15,47 +17,69 @@ namespace SportManager
             //MyPersitence = new PersistenceLayer();
             MyPersitence = persistence;
         }
-        public Athlete[] getAllAthletes()
+        public IEnumerable<Athlete> getAllAthletes()
         {
 
-            Athlete[] athleteArray = MyPersitence.AllAthlete;
+            List<Athlete> athleteList = MyPersitence.AllAthlete.ToList();
 
-            Athlete temp;
+            //Athlete temp;
 
-            for (int i = 0; i < athleteArray.Length-1; i++)
-            {
-                for (int j = i+1; j < athleteArray.Length; j++)
-                { 
-                    if (athleteArray[i].Name.CompareTo(athleteArray[j].Name)>0)
-                    {
-                        temp = athleteArray[i];
-                        athleteArray[i] = athleteArray[j];
-                        athleteArray[j] = temp;
-                    }
-                }
-            }
+            //for (int i = 0; i < athleteArray.Length-1; i++)
+            //{
+            //    for (int j = i+1; j < athleteArray.Length; j++)
+            //    { 
+            //        if (athleteArray[i].Name.CompareTo(athleteArray[j].Name)>0)
+            //        {
+            //            temp = athleteArray[i];
+            //            athleteArray[i] = athleteArray[j];
+            //            athleteArray[j] = temp;
+            //        }
+            //    }
+            //}
 
+            //athleteList.Sort();
 
-            return athleteArray;
+            //athleteList.Sort((a1,a2) => a1.Name.CompareTo(a2.Name));
+
+            AthleteComparer comparer = new AthleteComparer(AthleteOrderType.Weight);
+            athleteList.Sort(comparer);
+
+            return athleteList;
         }
+
+        
 
         public void insertAthlete(Athlete athlete)
         {
-            Console.WriteLine(athlete);
+            try
+            {
+                MyPersitence.SaveAthlete(athlete);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Trace.TraceError("errore");
+            }
+            
         }
 
         public Athlete searchAthlete(string searchString)
         {
-            Athlete[] athleteArray = MyPersitence.AllAthlete;
+            IEnumerable<Athlete> athletes = MyPersitence.AllAthlete;
 
-            foreach (var athlete in athleteArray)
+            foreach (var athlete in athletes)
             {
                 if (athlete.Name.ToLower().Contains(searchString.ToLower())||athlete.Surname.ToLower().Contains(searchString.ToLower()))
                 {
                     return athlete;
                 }
             }
-            return null;
+
+            throw new Exception();
+            
         }
     }
 }

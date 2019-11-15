@@ -1,11 +1,12 @@
 ﻿using SportManager.Model.Sports;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace SportManager.Model
 {
-    internal abstract class Athlete
+    internal abstract class Athlete: IComparable<Athlete>
     {
         public string Id { get; }
         public string Name { get; set; }
@@ -161,6 +162,13 @@ namespace SportManager.Model
                 + "Sport: " + Sport.Name + "\n"
                 + "Calorie: " + calory + "\n";
             return description;
+        }
+
+        public int CompareTo(Athlete other)
+        {
+            int result = Surname.CompareTo(other.Surname);
+            return result;
+
         }
     }
 
