@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using SportManager.Model;
+using SportManager.Exceptions;
+
 
 namespace SportManager
 {
@@ -78,7 +80,7 @@ namespace SportManager
                 }
             }
 
-            throw new Exception();
+            throw new AthleteNotFoundException();
             
         }
     }

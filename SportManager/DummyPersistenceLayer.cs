@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SportManager.Model;
 using SportManager.Model.Sports;
@@ -58,6 +59,12 @@ namespace SportManager
 
         public void SaveAthlete(Athlete a)
         {
+            //List<Athlete> tempList = AllAthlete.ToList();
+            //tempList.Add(a);
+            //AllAthlete = tempList;
+
+            //AllAthlete = AllAthlete.Append(a);
+
             throw new Exception();
         }
     }

@@ -3,6 +3,7 @@ using SportManager.Model.Sports;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SportManager.Exceptions;
 
 namespace SportManager
 {
@@ -69,9 +70,7 @@ namespace SportManager
             catch (Exception)
             {
 
-                Console.WriteLine("L'utente non é stato salvato");
             }
-            
 
         }
 
@@ -84,9 +83,9 @@ namespace SportManager
                 Athlete searchedAthlete = MyLogic.searchAthlete(searchString);
                 Console.WriteLine(searchedAthlete);
             }
-            catch (Exception)
+            catch (AthleteNotFoundException e)
             {
-                Console.WriteLine("Atleta non trovato\n\n");
+                Console.WriteLine(e.Message);
             }
             
 
